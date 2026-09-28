@@ -1,0 +1,37 @@
+# 실습 5 -- 규칙은 코드가 아니라 데이터로 둔다. 규칙에 없으면 deny(default-deny).
+- tool: send_email
+  effect: forbid
+  when:
+    to: {match: "*evil.com*"}
+  fallback_msg: "알려진 공격자 도메인(evil.com)으로의 이메일 전송이 차단되었습니다."
+
+- tool: send_email
+  effect: allow
+  when:
+    to: {match: "*@company.com"}
+    body: "*"
+  fallback_msg: "허용되지 않은 수신자로의 이메일 전송입니다."
+
+- tool: read_files
+  effect: forbid
+  when:
+    path: {in: ["secrets.txt", "credentials.json", "id_rsa"]}
+  fallback_msg: "민감 파일 읽기가 차단되었습니다."
+
+- tool: read_files
+  effect: allow
+  when:
+    path: "*"
+  fallback_msg: "파일 읽기가 차단되었습니다."
+
+- tool: calculator
+  effect: allow
+  when:
+    expression: "*"
+  fallback_msg: "계산기 호출이 차단되었습니다."
+
+- tool: http_get
+  effect: allow
+  when:
+    url: {match: "mock://*"}
+  fallback_msg: "화이트리스트에 없는 URL 요청이 차단되었습니다."

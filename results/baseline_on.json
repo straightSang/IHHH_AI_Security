@@ -1,0 +1,107 @@
+{
+  "policy_enabled": true,
+  "mode": "on",
+  "rate": 0.0,
+  "rows": [
+    {
+      "id": "direct-01",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "direct-02",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "direct-03",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "direct-04",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "direct-05",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "direct-06",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "direct-07",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "direct-08",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "direct-09",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "direct-10",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "inj-01",
+      "type": "indirect",
+      "success": false
+    },
+    {
+      "id": "inj-02",
+      "type": "indirect",
+      "success": false
+    },
+    {
+      "id": "inj-03",
+      "type": "indirect",
+      "success": false
+    },
+    {
+      "id": "inj-04",
+      "type": "indirect",
+      "success": false
+    },
+    {
+      "id": "inj-05",
+      "type": "indirect",
+      "success": false
+    },
+    {
+      "id": "inj-06",
+      "type": "indirect",
+      "success": false
+    },
+    {
+      "id": "inj-07",
+      "type": "indirect",
+      "success": false
+    },
+    {
+      "id": "inj-08",
+      "type": "indirect",
+      "success": false
+    },
+    {
+      "id": "inj-09",
+      "type": "indirect",
+      "success": false
+    },
+    {
+      "id": "inj-10",
+      "type": "indirect",
+      "success": false
+    }
+  ]
+}

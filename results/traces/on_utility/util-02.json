@@ -1,0 +1,10 @@
+[
+  {
+    "tool": "calculator",
+    "args": {
+      "expression": "3 + 5 * 2"
+    },
+    "result": "13",
+    "decision": "allow"
+  }
+]

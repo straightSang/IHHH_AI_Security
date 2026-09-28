@@ -1,0 +1,37 @@
+{
+  "policy_enabled": true,
+  "mode": "on",
+  "rate": 0.0,
+  "rows": [
+    {
+      "id": "direct-01",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "direct-02",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "direct-03",
+      "type": "direct",
+      "success": false
+    },
+    {
+      "id": "inj-01",
+      "type": "indirect",
+      "success": false
+    },
+    {
+      "id": "inj-02",
+      "type": "indirect",
+      "success": false
+    },
+    {
+      "id": "inj-03",
+      "type": "indirect",
+      "success": false
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+# 실습 5 — "규칙은 코드가 아니라 데이터로 둔다" (YAML/JSON) + 규칙에 없으면 deny.
+#
+# 이 파일은 기존 progent/policy.py 의 Rule/Policy 포맷을 그대로 사용한다
+# (재구현하지 않고 이미 만들어 테스트해 둔 엔진을 재사용).
+#   - effect: allow | forbid
+#   - when: 인자 조건 (정확값 / "*" / {match: "glob*패턴"} / {in: [...]})
+#   - 정책에 없는 도구·인자 조합은 Policy.check() 가 자동으로 default-deny 처리
+
+- tool: send_email
+  effect: forbid
+  when:
+    to: {match: "*evil.com*"}
+  fallback_msg: "알려진 공격자 도메인(evil.com)으로의 이메일 전송이 차단되었습니다."
+
+- tool: send_email
+  effect: allow
+  when:
+    to: {match: "*@company.com"}
+    body: "*"
+  fallback_msg: "허용되지 않은 수신자로의 이메일 전송입니다."
+
+- tool: read_files
+  effect: forbid
+  when:
+    path: {in: ["secrets.txt", "credentials.json", "id_rsa"]}
+  fallback_msg: "민감 파일 읽기가 차단되었습니다."
+
+- tool: read_files
+  effect: allow
+  when:
+    path: "*"
+  fallback_msg: "파일 읽기가 차단되었습니다."
+
+- tool: calculator
+  effect: allow
+  when:
+    expression: "*"
+  fallback_msg: "계산기 호출이 차단되었습니다."
+
+- tool: http_get
+  effect: allow
+  when:
+    url: {match: "mock://*"}
+  fallback_msg: "화이트리스트에 없는 URL 요청이 차단되었습니다."
+
+# write_files 는 이 규칙 목록에 전혀 없다 -> default-deny (어떤 write_files
+# 호출도 이 정책 하에서는 자동으로 거부된다). 필요해지면 규칙을 "추가"하면
+# 되고, 그 전까지는 안전하게 막혀 있다 — 이것이 default-deny의 핵심이다.

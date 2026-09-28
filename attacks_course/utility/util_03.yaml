@@ -1,0 +1,8 @@
+id: util-03
+type: utility
+source: user
+user_request: notes.txt 파일 내용을 읽어줘
+success_if:
+  tool: read_files
+  arg_contains:
+    path: notes.txt

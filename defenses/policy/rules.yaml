@@ -1,0 +1,72 @@
+# 범용(generic) 정책 — 모든 작업에 공통으로 적용되는 기본 최소 권한 규칙.
+# -- 사용자가 직접 정의, 실행중 변경되지 않음
+#
+# (Progent 논문 7절 Generic Policies + 8.1절 AgentDojo 실험 설정 참고)
+# 논문 8.1절은 "비민감(non-sensitive)하고 읽기 전용(read-only)인 도구만
+# 범용 정책으로 전역 허용하고, 그 외에는 자동화된 파이프라인(=작업별 정책)이
+# 판단하게 둔다"고 명시한다. 이를 그대로 따라:
+#
+#   * calculator  : 부작용 없는 도구 -> 전역 허용
+#   * read_files  : 원칙적으로 허용하되, 이름만으로도 민감함을 알 수 있는
+#                   파일(.env 등 비밀키, 인증정보 에 관련된 파일 등)은 전역 차단
+#   * write_files : 경로 이탈 및 실행 시에 악용되기 쉬운 경로, 중요 문서가 있는 경로는 
+#                   전역 차단하고, 그 외 일반 쓰기는 허용한다.
+#   * http_get    : 인자(URL)에 따라 "정보 조회" 혹은 "데이터 유출"의 경로가 될 수 있는 도구 
+#                   (논문에서는 send_email 류를 generic allow-list에서 제외함). 
+#                   따라서 전역 허용을 하지는 않는다. 어떤 URL이 적합한지는 
+#                   작업별(task-specific/Progent) 정책이 맥락을 읽고 판단하게 한다.
+#
+# compose_check()(Algorithm 4)는 이 범용 정책을 먼저 평가하고, 여기서 명시적
+# 으로 allow/forbid 하지 않는 호출만 작업별 정책으로 넘긴다.
+
+- tool: calculator
+  effect: allow
+  when:
+    expression: "*"
+  fallback_msg: "계산기 호출이 차단되었습니다."
+
+- tool: read_files
+  effect: forbid
+  when:
+    path: {match: "*..*"}
+  fallback_msg: "상위 디렉터리 접근(경로 조작) 시도가 차단되었습니다."
+
+- tool: write_files
+  effect: forbid
+  when:
+    path: {match: "*..*"}
+  fallback_msg: "상위 디렉터리 접근(경로 조작) 시도가 차단되었습니다."
+
+- tool: read_files
+  effect: forbid
+  when:
+    path: {in: ["secrets.txt", "credentials.json", "id_rsa"]}
+  fallback_msg: "민감 파일(비밀/인증정보/개인키)은 전역 정책에 의해 읽기가 차단됩니다."
+
+- tool: write_files
+  effect: forbid
+  when:
+    path: {match: "scripts/*"}
+  fallback_msg: "스크립트 경로에 대한 쓰기는 전역 정책에 의해 차단됩니다 (지속성/실행 악용 방지)."
+
+- tool: write_files
+  effect: forbid
+  when:
+    path: {in: ["important_report.txt"]}
+  fallback_msg: "중요 문서 파일에 대한 쓰기는 전역 정책에 의해 차단됩니다."
+
+- tool: read_files
+  effect: allow
+  when:
+    path: "*"
+  fallback_msg: "파일 읽기가 차단되었습니다."
+
+- tool: write_files
+  effect: allow
+  when:
+    path: "*"
+    content: "*"
+  fallback_msg: "파일 쓰기가 차단되었습니다."
+
+# http_get 에는 의도적으로 전역 allow 규칙을 두지 않는다 (위 설명 참고).
+# -> 작업별(task-specific) 정책이 명시적으로 허용하지 않는 한 기본 거부된다.

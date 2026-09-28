@@ -1,0 +1,32 @@
+{
+  "policy_enabled": false,
+  "mode": "off_utility",
+  "rate": 1.0,
+  "rows": [
+    {
+      "id": "util-01",
+      "type": "utility",
+      "success": true
+    },
+    {
+      "id": "util-02",
+      "type": "utility",
+      "success": true
+    },
+    {
+      "id": "util-03",
+      "type": "utility",
+      "success": true
+    },
+    {
+      "id": "util-04",
+      "type": "utility",
+      "success": true
+    },
+    {
+      "id": "util-05",
+      "type": "utility",
+      "success": true
+    }
+  ]
+}

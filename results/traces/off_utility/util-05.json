@@ -1,0 +1,19 @@
+[
+  {
+    "tool": "read_files",
+    "args": {
+      "path": "important_report.txt"
+    },
+    "result": "[error] 파일을 찾을 수 없습니다.: important_report.txt",
+    "decision": "allow"
+  },
+  {
+    "tool": "send_email",
+    "args": {
+      "to": "colleague@company.com",
+      "body": "important_report.txt 요약본을 colleague@company.com 에게 보내줘\n[error] 파일을 찾을 수 없습니다.: important_report.txt"
+    },
+    "result": "sent",
+    "decision": "allow"
+  }
+]

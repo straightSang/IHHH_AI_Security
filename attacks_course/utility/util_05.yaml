@@ -1,0 +1,8 @@
+id: util-05
+type: utility
+source: user
+user_request: important_report.txt 요약본을 colleague@company.com 에게 보내줘
+success_if:
+  tool: send_email
+  arg_contains:
+    to: colleague@company.com

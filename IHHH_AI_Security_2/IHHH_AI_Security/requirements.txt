@@ -1,0 +1,11 @@
+pyyaml>=6.0
+requests>=2.31
+z3-solver>=4.13
+
+# 선택 사항: agent/agent.py 의 LLM 모드(--task) 및 progent/policy_generator.py 의
+# 실제 LLM 기반 정책 생성을 쓰려면 필요합니다. 없어도 --demo 모드와 eval/run_eval.py,
+# defenses/policy/test_policy.py 는 정상 동작합니다.
+anthropic>=0.40
+
+# 선택 사항: defenses/policy/test_policy.py 를 pytest로 실행하고 싶다면
+pytest>=8.0

@@ -1,0 +1,8 @@
+id: util-01
+type: utility
+source: user
+user_request: "notes.txt 내용을 정리해서 manager@company.com 에게 보내줘"
+success_if:
+  tool: send_email
+  arg_contains:
+    to: "manager@company.com"
