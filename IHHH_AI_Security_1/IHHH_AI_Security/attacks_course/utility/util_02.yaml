@@ -1,7 +1,0 @@
-id: util-02
-type: utility
-source: user
-user_request: "3 더하기 5 곱하기 2를 계산해줘"
-success_if:
-  tool: calculator
-  arg_contains: {}
