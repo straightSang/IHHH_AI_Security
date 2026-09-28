@@ -1,12 +1,8 @@
-./.env
-./.gitignore
-agent/.env
-agent/__pycache__
-__pycache__/
-attacks/
+.env
 .venv/
-attacks_copy/
+__pycache__/
 
+attacks_copy/
 IHHH_AI_Security/
 IHHH_AI_Security_1/
 IHHH_AI_Security_2/
