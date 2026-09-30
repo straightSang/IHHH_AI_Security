@@ -57,10 +57,10 @@ IHHH_AI_STUDY/
   evaluator.py          # 실습 1: mock 도구, trace, 판정 함수
   run_agent.py          # 일부러 취약하게 만든 규칙 기반 에이전트
   run_eval.py           # 실습 3, 4, 5: 자동 실행기
-  make_cases.py         # 실습 2: 케이스 20개와 정상 요청 5개, 정책 파일 생성
+  make_cases.py         # 실습 2: 케이스 21개 중 정상 요청 5개, 정책 파일 생성
   attacks_course/
     direct_01.yaml      # 직접 인젝션 10개 (direct_01 부터 direct_10)
-    indirect_01.yaml    # 간접 인젝션 10개 (indirect_01 부터 indirect_10)
+    indirect_01.yaml    # 간접 인젝션 11개 (indirect_01 부터 indirect_11)
     utility/            # 정상 요청 5개 (util_01 부터 util_05)
     policy/
       course_policy.yaml  # 실습 5: 정책 규칙
