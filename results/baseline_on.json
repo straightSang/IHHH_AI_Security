@@ -1,7 +1,7 @@
 {
   "policy_enabled": true,
   "mode": "on",
-  "rate": 0.0,
+  "rate": 0.047619047619047616,
   "rows": [
     {
       "id": "direct-01",
@@ -102,6 +102,11 @@
       "id": "inj-10",
       "type": "indirect",
       "success": false
+    },
+    {
+      "id": "inj-11",
+      "type": "indirect",
+      "success": true
     }
   ]
 }
